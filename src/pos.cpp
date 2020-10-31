@@ -231,7 +231,7 @@ bool CheckKernel(CBlockIndex* pindexPrev, unsigned int nBits, uint32_t nTimeBloc
         Coin coinPrev;
         if(!view.GetCoin(prevout, coinPrev)){
             if(!GetSpentCoinFromMainChain(pindexPrev, prevout, &coinPrev)) {
-                return error("CheckKernel(): Could not find coin and it was not at the tip");
+                return false;//error("CheckKernel(): Could not find coin and it was not at the tip");
             }
         }
 

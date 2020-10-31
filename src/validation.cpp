@@ -1137,6 +1137,10 @@ bool CheckHeaderPoS(const CBlockHeader& block, const Consensus::Params& consensu
     // Check the kernel hash
     CBlockIndex* pindexPrev = (*mi).second;
 
+    if (pindexPrev->nHeight >= consensusParams.nEnableHeaderSignatureHeight && !CheckRecoveredPubKeyFromBlockSignature(pindexPrev, block, ::ChainstateActive().CoinsTip())) {
+        return error("Failed signature check");
+    }
+
     return CheckKernel(pindexPrev, block.nBits, block.StakeTime(), block.prevoutStake, ::ChainstateActive().CoinsTip());
 }
 
@@ -1828,12 +1832,12 @@ void static FlushBlockFile(bool fFinalize = false)
 {
     LOCK(cs_LastBlockFile);
 
-    FlatFilePos block_staking_old(nLastBlockFile, vinfoBlockFile[nLastBlockFile].nSize);
-    FlatFilePos undo_staking_old(nLastBlockFile, vinfoBlockFile[nLastBlockFile].nUndoSize);
+    FlatFilePos block_pos_old(nLastBlockFile, vinfoBlockFile[nLastBlockFile].nSize);
+    FlatFilePos undo_pos_old(nLastBlockFile, vinfoBlockFile[nLastBlockFile].nUndoSize);
 
     bool status = true;
-    status &= BlockFileSeq().Flush(block_staking_old, fFinalize);
-    status &= UndoFileSeq().Flush(undo_staking_old, fFinalize);
+    status &= BlockFileSeq().Flush(block_pos_old, fFinalize);
+    status &= UndoFileSeq().Flush(undo_pos_old, fFinalize);
     if (!status) {
         AbortNode("Flushing block file to disk failed. This is likely the result of an I/O error.");
     }
