@@ -23,7 +23,7 @@ packages:
 - "ca-certificates"
 - "python3"
 remotes:
-- "url": "https://github.com/BitcoinStaking/BitcoinS.git"
+- "url": "https://github.com/dev-bsk/BitcoinS.git"
   "dir": "BitcoinS"
 files: []
 script: |

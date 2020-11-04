@@ -29,7 +29,7 @@ packages:
 - "python3-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/BitcoinStaking/BitcoinS.git"
+- "url": "https://github.com/dev-bsk/BitcoinS.git"
   "dir": "BitcoinS"
 files:
 - "MacOSX10.14.sdk.tar.gz"
