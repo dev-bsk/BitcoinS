@@ -7,8 +7,6 @@ src/bitcoin-stakingd
 src/bitcoin-staking-cli
 src/bitcoin-staking-tx
 src/bitcoin-staking-wallet
-src/test/fuzz
-!src/test/fuzz/*.*
 src/test/test_bitcoin
 src/qt/test/test_bitcoin-qt
 
