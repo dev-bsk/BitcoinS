@@ -95,17 +95,17 @@ def sign():
 
     if args.windows:
         print('\nSigning ' + args.version + ' Windows')
-        subprocess.check_call('cp inputs/BitcoinS-' + args.version + '-win-unsigned.tar.gz inputs/BitcoinS-win-unsigned.tar.gz', shell=True)
+        subprocess.check_call('cp inputs/BitcoinS-' + args.version + '-win-unsigned.tar.gz inputs/bitcoin-staking-win-unsigned.tar.gz', shell=True)
         subprocess.check_call(['bin/gbuild', '--skip-image', '--upgrade', '--commit', 'signature='+args.commit, '../BitcoinS/contrib/gitian-descriptors/gitian-win-signer.yml'])
         subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-signed', '--destination', '../gitian.sigs/', '../BitcoinS/contrib/gitian-descriptors/gitian-win-signer.yml'])
         subprocess.check_call('mv build/out/bitcoin-staking-*win64-setup.exe ../BitcoinS-binaries/'+args.version, shell=True)
 
     if args.macos:
         print('\nSigning ' + args.version + ' MacOS')
-        subprocess.check_call('cp inputs/BitcoinS-' + args.version + '-osx-unsigned.tar.gz inputs/BitcoinS-osx-unsigned.tar.gz', shell=True)
+        subprocess.check_call('cp inputs/BitcoinS-' + args.version + '-osx-unsigned.tar.gz inputs/bitcoin-staking-osx-unsigned.tar.gz', shell=True)
         subprocess.check_call(['bin/gbuild', '--skip-image', '--upgrade', '--commit', 'signature='+args.commit, '../BitcoinS/contrib/gitian-descriptors/gitian-osx-signer.yml'])
         subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-signed', '--destination', '../gitian.sigs/', '../BitcoinS/contrib/gitian-descriptors/gitian-osx-signer.yml'])
-        subprocess.check_call('mv build/out/BitcoinS-osx-signed.dmg ../BitcoinS-binaries/'+args.version+'/BitcoinS-'+args.version+'-osx.dmg', shell=True)
+        subprocess.check_call('mv build/out/bitcoin-staking-osx-signed.dmg ../BitcoinS-binaries/'+args.version+'/BitcoinS-'+args.version+'-osx.dmg', shell=True)
 
     os.chdir(workdir)
 
