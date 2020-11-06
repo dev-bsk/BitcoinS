@@ -1,5 +1,5 @@
 ---
-name: "bitcoin-staking-core-win-0.20"
+name: "BitcoinS-core-win-0.20"
 enable_cache: true
 distro: "ubuntu"
 suites:

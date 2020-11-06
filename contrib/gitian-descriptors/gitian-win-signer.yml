@@ -1,5 +1,5 @@
 ---
-name: "bitcoin-staking-win-signer"
+name: "BitcoinS-win-signer"
 distro: "ubuntu"
 suites:
 - "bionic"
@@ -12,11 +12,11 @@ packages:
 - "libtool"
 - "pkg-config"
 remotes:
-- "url": "https://github.com/bitcoin-staking-core/bitcoin-staking-detached-sigs.git"
+- "url": "https://github.com/BitcoinS-core/BitcoinS-detached-sigs.git"
   "dir": "signature"
 files:
 - "osslsigncode-2.0.tar.gz"
-- "bitcoin-staking-win-unsigned.tar.gz"
+- "BitcoinS-win-unsigned.tar.gz"
 script: |
   set -e -o pipefail
 
@@ -27,7 +27,7 @@ script: |
   echo "5a60e0a4b3e0b4d655317b2f12a810211c50242138322b16e7e01c6fbb89d92f  osslsigncode-2.0.tar.gz" | sha256sum -c
 
   mkdir -p ${UNSIGNED_DIR}
-  tar -C ${UNSIGNED_DIR} -xf bitcoin-staking-win-unsigned.tar.gz
+  tar -C ${UNSIGNED_DIR} -xf BitcoinS-win-unsigned.tar.gz
 
   tar xf osslsigncode-2.0.tar.gz
   cd osslsigncode-2.0
